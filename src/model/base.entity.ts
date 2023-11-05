@@ -1,19 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Table, Column, Model } from 'sequelize-typescript';
 
-@Entity()
-export class postgresdata {
-  @PrimaryGeneratedColumn()
+@Table
+export class postgresdata extends Model {
+  @Column
   number1: number;
 
-  @Column()
+  @Column
   operator: string;
 
-  @Column()
+  @Column
   number2: number;
 
-  @Column()
+  @Column
   result: number;
 
-  @Column()
+  @Column
   Date: Date;
 }

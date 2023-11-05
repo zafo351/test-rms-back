@@ -9,11 +9,11 @@ import { MultiService } from './services/mult.service';
 import { DiviService } from './services/divi.service';
 import { postgresdata } from './model/base.entity';
 import { DatabaseModule } from './domain/modules/database.module';
+import { databaseProviders } from './domain/providers/database.providers';
 
 @Module({
-  imports: [
-  ],
+  imports: [DatabaseModule],
   controllers: [AppController],
-  providers: [SumaService, RestaService, MultiService, DiviService],
+  providers: [SumaService, RestaService, MultiService, DiviService,databaseProviders],
 })
 export class AppModule {}
