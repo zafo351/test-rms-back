@@ -6,8 +6,8 @@ import { AppController } from '../../app.controller';
 import configService from 'src/config/config.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([postgresdata])],
-  providers: [SumaService],
-  controllers: [AppController],
+  imports: [],
+  providers: [],
+  controllers: [],
 })
 export class DatabaseModule {}

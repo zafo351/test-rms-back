@@ -6,13 +6,13 @@ import { RequestDTO } from '../domain/dto/request.dto';
 
 @Injectable()
 export class RestaService {
-  constructor(
-    @InjectRepository(postgresdata)
-    private restaRepository: Repository<postgresdata>,
-  ) {}
   postRest(requestDTO): any {
+    if ((requestDTO.operacion == '+')) {
     const result = requestDTO.number1 - requestDTO.number2;
 
     return result;
+    }
+    else 
+    return 'operador fallido'
   }
 }

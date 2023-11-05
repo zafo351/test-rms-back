@@ -6,10 +6,6 @@ import { RequestDTO } from '../domain/dto/request.dto';
 
 @Injectable()
 export class DiviService {
-  constructor(
-    @InjectRepository(postgresdata)
-    private diviRepository: Repository<postgresdata>,
-  ) {}
   postDivi(requestDTO): any {
     const result = requestDTO.number1 / requestDTO.number2;
 
