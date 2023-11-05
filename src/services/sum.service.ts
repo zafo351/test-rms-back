@@ -19,6 +19,6 @@ export class SumaService {
     post.operator = requestDTO.operacion;
     post.result = exito;
     
-    return this.postRepository.save(post);;
+    return this.postRepository.save(post);
   }
 }

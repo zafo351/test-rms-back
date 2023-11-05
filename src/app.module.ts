@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigType } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import  configuration  from './config/config.service';
+import config from './config/config.service';
 import { SumaService } from './services/sum.service';
 import { RestaService } from './services/rest.service';
 import { MultiService } from './services/mult.service';
@@ -13,7 +13,20 @@ import { Calculus } from './model/base.entity';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [configuration],
+      load: [config],
+    }),
+    TypeOrmModule.forRootAsync({
+      useFactory: (configService: ConfigType<typeof config>) => ({
+        type: 'postgres',
+        host: configService.host,
+        port: configService.port,
+        username: configService.username,
+        password: configService.password,
+        database: configService.database,
+        autoLoadEntities: true,
+        synchronize: true,
+      }),
+      inject: [config.KEY],
     }),
   ],
   controllers: [AppController],
