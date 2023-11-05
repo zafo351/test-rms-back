@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { postgresdata } from '../model/base.entity';
+import { Task } from '../../domain/entities/task.entity';
 import { Repository } from 'typeorm';
-import { RequestDTO } from '../domain/dto/request.dto';
+import { RequestDTO } from '../../domain/dto/requestDTO';
 
 @Injectable()
 export class DiviService {
   constructor(
-    @InjectRepository(postgresdata)
-    private diviRepository: Repository<postgresdata>,
+    @InjectRepository(Task)
+    private diviRepository: Repository<Task>,
   ) {}
-  postDivi(requestDTO): any {
+  postDivi(requestDTO: RequestDTO){
     if (requestDTO.operacion == '/') {
-      const exito = requestDTO.number1 - requestDTO.number2;
+      const exito = requestDTO.number1 / requestDTO.number2;
       const newCalc = this.diviRepository.create({
         number1: requestDTO.number1,
         number2: requestDTO.number2,

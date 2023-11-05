@@ -10,9 +10,18 @@ export class RestaService {
     @InjectRepository(postgresdata)
     private restaRepository: Repository<postgresdata>,
   ) {}
-  postRest(requestDTO): any {
-    const result = requestDTO.number1 - requestDTO.number2;
-
-    return result;
+  postRest(requestDTO: RequestDTO) {
+    if (requestDTO.operacion == '-') {
+      const exito = requestDTO.number1 - requestDTO.number2;
+      const newCalc = this.restaRepository.create({
+        number1: requestDTO.number1,
+        number2: requestDTO.number2,
+        operator: requestDTO.operacion,
+        result: exito,
+      });
+      const responseDB = this.restaRepository.save(newCalc);
+      console.log(responseDB);
+      return exito;
+    }
   }
 }

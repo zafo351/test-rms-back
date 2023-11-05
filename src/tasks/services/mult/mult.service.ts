@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { postgresdata } from '../model/base.entity';
+import { Task } from '../../domain/entities/task.entity';
 import { Repository } from 'typeorm';
-import { RequestDTO } from '../domain/dto/request.dto';
+import { RequestDTO } from '../../domain/dto/requestDTO';
 
 @Injectable()
-export class MultiService {
+export class MultService {
   constructor(
-    @InjectRepository(postgresdata)
-    private multiRepository: Repository<postgresdata>,
+    @InjectRepository(Task)
+    private multiRepository: Repository<Task>,
   ) {}
-  postMulti(requestDTO): any {
+  postMulti(requestDTO: RequestDTO){
     if (requestDTO.operacion == '*') {
-      const exito = requestDTO.number1 - requestDTO.number2;
+      const exito = requestDTO.number1 * requestDTO.number2;
       const newCalc = this.multiRepository.create({
         number1: requestDTO.number1,
         number2: requestDTO.number2,

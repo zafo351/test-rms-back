@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { postgresdata } from '../model/base.entity';
+import { Task } from '../../domain/entities/task.entity';
 import { Repository } from 'typeorm';
-import { RequestDTO } from '../domain/dto/request.dto';
+import { RequestDTO } from '../../domain/dto/requestDTO';
 
 @Injectable()
 export class SumaService {
   constructor(
-    @InjectRepository(postgresdata)
-    private sumaRepository: Repository<postgresdata>,
+    @InjectRepository(Task)
+    private sumaRepository: Repository<Task>,
   ) {}
 
   postSuma(requestDTO: RequestDTO) {

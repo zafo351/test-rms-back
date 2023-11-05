@@ -1,36 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { SumaService } from './services/sum.service';
-import { RequestDTO } from './domain/dto/request.dto';
-import { RestaService } from './services/rest.service';
-import { MultiService } from './services/mult.service';
-import { DiviService } from './services/divi.service';
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(
-    private readonly sumaService: SumaService,
-    private readonly restaService: RestaService,
-    private readonly multiService: MultiService,
-    private readonly diviService: DiviService
-  ) {}
+  constructor(private readonly appService: AppService) {}
 
-  @Post('/sum')
-  postSum(@Body() requestDTO: RequestDTO) {
-    return this.sumaService.postSuma(requestDTO);
-  }
-
-  @Post('/rest')
-  postRest(@Body() requestDTO: RequestDTO): string {
-    return this.restaService.postRest(requestDTO);
-  }
-
-  @Post('/mult')
-  postMulti(@Body() requestDTO: RequestDTO): string {
-    return this.multiService.postMulti(requestDTO);
-  }
-
-  @Post('/divi')
-  postDivi(@Body() requestDTO: RequestDTO): string {
-    return this.diviService.postDivi(requestDTO);
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
   }
 }

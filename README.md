@@ -24,18 +24,12 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) Aplicacion de prueba enfocada a una calculadora para la empresa RMS Thomas Seguridad.
-
--- Deloper: Nicolas perdomo
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
 ```bash
-# instalar dependecias
 $ npm install
-
-# subir base de datos (ejecutar el comando en la raiz del repositorio)
-$ docker compose up
 ```
 
 ## Running the app
@@ -46,45 +40,34 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
-## Funcion
+## Test
 
-La api esta diseñada para exponer 4 servicios donde se encontraran cada una de las operaciones matematicas solicitadas, para testearlo se adjuntan los CURL para copiar en postman y testearlos.
+```bash
+# unit tests
+$ npm run test
 
-``` bash
-# /sum
-curl --location 'http://localhost:8081/sum' \
---header 'Content-Type: application/json' \
---data '{
-    "number1": 1,
-    "number2": 2,
-    "operacion": "+"
-}'
+# e2e tests
+$ npm run test:e2e
 
-# /rest
-curl --location 'http://localhost:8081/rest' \
---header 'Content-Type: application/json' \
---data '{
-    "number1": 1,
-    "number2": 2,
-    "operacion": "-"
-}'
+# test coverage
+$ npm run test:cov
+```
 
-# /multi
-curl --location 'http://localhost:8081/rest' \
---header 'Content-Type: application/json' \
---data '{
-    "number1": 1,
-    "number2": 2,
-    "operacion": "*"
-}'
+## Support
 
-# /divi
-curl --location 'http://localhost:8081/rest' \
---header 'Content-Type: application/json' \
---data '{
-    "number1": 1,
-    "number2": 2,
-    "operacion": "/"
-}'
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](LICENSE).

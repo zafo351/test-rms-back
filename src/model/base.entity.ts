@@ -3,6 +3,9 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class postgresdata {
   @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
   number1: number;
 
   @Column()

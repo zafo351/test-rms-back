@@ -1,31 +1,32 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigType } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import config from './config/config.service';
-import { SumaService } from './services/sum.service';
-import { RestaService } from './services/rest.service';
-import { MultiService } from './services/mult.service';
-import { DiviService } from './services/divi.service';
-import { postgresdata } from './model/base.entity';
-import { DatabaseModule } from './domain/modules/database.module';
+import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TasksModule } from './tasks/tasks.module';
+import { ConfigModule } from '@nestjs/config';
+import configuration from './tasks/domain/resources/env.config';
 
 @Module({
   imports: [
-    DatabaseModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DATABASE,
-      entities: [postgresdata],
+      host: 'localhost',
+      port: 5432,
+      username: 'postgresRms',
+      password: 'PostgresRms',
+      database: 'postgres',
+      entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
+      retryDelay: 3000,
+      retryAttempts: 10,
     }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+    }),
+    TasksModule,
   ],
   controllers: [AppController],
-  providers: [SumaService, RestaService, MultiService, DiviService],
-  exports: [TypeOrmModule],
+  providers: [AppService],
 })
 export class AppModule {}
