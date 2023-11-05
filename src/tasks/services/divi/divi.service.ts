@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from '../../domain/entities/task.entity';
 import { Repository } from 'typeorm';
@@ -17,11 +17,12 @@ export class DiviService {
         number1: requestDTO.number1,
         number2: requestDTO.number2,
         operator: requestDTO.operacion,
+        Date: new Date(),
         result: exito,
       });
       const responseDB = this.diviRepository.save(newCalc);
       console.log(responseDB);
       return exito;
-    }
+    }else return 'Falla de datos: '+BadRequestException;
   }
 }

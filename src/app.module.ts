@@ -3,15 +3,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TasksModule } from './tasks/tasks.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigType } from '@nestjs/config';
 import configuration from './tasks/domain/resources/env.config';
+import { config } from 'process';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5432,
+      port: parseInt(process.env.POSTGRES_PORT),
       username: 'postgresRms',
       password: 'PostgresRms',
       database: 'postgres',
@@ -19,10 +24,6 @@ import configuration from './tasks/domain/resources/env.config';
       synchronize: true,
       retryDelay: 3000,
       retryAttempts: 10,
-    }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [configuration],
     }),
     TasksModule,
   ],

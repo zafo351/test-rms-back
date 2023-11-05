@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from '../../domain/entities/task.entity';
 import { Repository } from 'typeorm';
@@ -18,10 +18,11 @@ export class RestService {
         number2: requestDTO.number2,
         operator: requestDTO.operacion,
         result: exito,
+        Date: new Date(),
       });
       const responseDB = this.restaRepository.save(newCalc);
       console.log(responseDB);
       return exito;
-    }
+    }else return 'Falla de datos: '+BadRequestException;
   }
 }

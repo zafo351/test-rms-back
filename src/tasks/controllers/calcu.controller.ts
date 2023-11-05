@@ -5,6 +5,10 @@ import { RequestDTO } from '../domain/dto/requestDTO';
 import { RestService } from '../services/rest/rest.service';
 import { MultService } from '../services/mult/mult.service';
 import { DiviService } from '../services/divi/divi.service';
+import { ExamineService } from '../services/examine/examine.service';
+import { DeleteService } from '../services/delete/delete.service';
+import { UpdateService } from '../services/update/update.service';
+import { Query } from 'typeorm/driver/Query';
 
 @Controller('api/tasks')
 export class CalcuController {
@@ -13,7 +17,10 @@ export class CalcuController {
     private readonly sumaService: SumaService,
     private readonly restaService: RestService,
     private readonly multiService: MultService,
-    private readonly diviService: DiviService
+    private readonly diviService: DiviService,
+    private readonly examineService: ExamineService,
+    private readonly deleteService: DeleteService,
+    private readonly updateService: UpdateService
   ) {}
 
   @Post('/sum')
@@ -34,6 +41,26 @@ export class CalcuController {
   @Post('/divi')
   postDivi(@Body() requestDTO: RequestDTO){
     return this.diviService.postDivi(requestDTO);
+  }
+
+  @Get('/examine')
+  getExamine(){
+    return this.examineService.findAll();
+  }
+
+  @Get('/examine/one/id')
+  getExamineOne(@Param('id') id: number){
+    return this.examineService.findOne(id);
+  }
+
+  @Put('/update/one/id')
+  update(@Param('id') id: number, @Body() body: any) {
+    return this.updateService.update(id, body);
+  }
+
+  @Delete('/delete/one/id')
+  delete(@Param('id') id: number) {
+    return this.deleteService.remove(id);
   }
 
 }
