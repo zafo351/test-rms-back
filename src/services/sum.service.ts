@@ -20,6 +20,8 @@ export class SumaService {
     post.operator = requestDTO.operacion;
     post.result = exito;
     const newUser = this.sumaRepository.create(post);
-    return this.sumaRepository.save(newUser);
+    const saved = this.sumaRepository.save(newUser);
+    console.log(saved)
+    return exito;
   }
 }

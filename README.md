@@ -31,7 +31,11 @@
 ## Installation
 
 ```bash
+# instalar dependecias
 $ npm install
+
+# subir base de datos (ejecutar el comando en la raiz del repositorio)
+$ docker compose up
 ```
 
 ## Running the app
