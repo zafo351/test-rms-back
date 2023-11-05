@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { SumaService } from './services/sum.service';
-import { RequestDTO } from './domain/request.dto';
+import { RequestDTO } from './domain/dto/request.dto';
 import { RestaService } from './services/rest.service';
 import { MultiService } from './services/mult.service';
 import { DiviService } from './services/divi.service';

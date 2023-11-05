@@ -1,24 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Calculus } from '../model/base.entity';
+import { postgresdata } from '../model/base.entity';
 import { Repository } from 'typeorm';
-import { RequestDTO } from '../domain/request.dto';
+import { RequestDTO } from '../domain/dto/request.dto';
+import { promises } from 'dns';
 
 @Injectable()
 export class SumaService {
   constructor(
-    @InjectRepository(Calculus)
-    private postRepository: Repository<Calculus>,
+    @InjectRepository(postgresdata)
+    private sumaRepository: Repository<postgresdata>,
   ) {}
 
-  async postSuma(requestDTO: RequestDTO): Promise<Calculus>{
-    const post = new Calculus();
+  async postSuma(requestDTO: RequestDTO): Promise<postgresdata | any > {
+    const post = new postgresdata();
     const exito = requestDTO.number1 + requestDTO.number2;
     post.number1 = requestDTO.number1;
     post.number2 = requestDTO.number1;
     post.operator = requestDTO.operacion;
     post.result = exito;
-    
-    return this.postRepository.save(post);
+    const newUser = this.sumaRepository.create(post);
+    return this.sumaRepository.save(newUser);
   }
 }

@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "2938b7dd-921d-46d3-8d44-0d7e190776ef",
+		"name": "Test-rms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16330820"
+	},
+	"item": [
+		{
+			"name": "test-rms-back/sum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number1\": 1,\r\n    \"number2\": 2,\r\n    \"operacion\": \"+\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/sum",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"sum"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-rms-back/rest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number1\": 1,\r\n    \"number2\": 2,\r\n    \"operacion\": \"-\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/rest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-rms-back/mult",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number1\": 1,\r\n    \"number2\": 2,\r\n    \"operacion\": \"*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/rest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-rms-back/divi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number1\": 1,\r\n    \"number2\": 2,\r\n    \"operacion\": \"/\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/rest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

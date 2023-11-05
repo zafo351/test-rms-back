@@ -7,29 +7,25 @@ import { SumaService } from './services/sum.service';
 import { RestaService } from './services/rest.service';
 import { MultiService } from './services/mult.service';
 import { DiviService } from './services/divi.service';
-import { Calculus } from './model/base.entity';
+import { postgresdata } from './model/base.entity';
+import { DatabaseModule } from './domain/modules/database.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [config],
-    }),
-    TypeOrmModule.forRootAsync({
-      useFactory: (configService: ConfigType<typeof config>) => ({
-        type: 'postgres',
-        host: configService.host,
-        port: configService.port,
-        username: configService.username,
-        password: configService.password,
-        database: configService.database,
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
-      inject: [config.KEY],
+    DatabaseModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: parseInt(process.env.POSTGRES_PORT),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DATABASE,
+      entities: [postgresdata],
+      synchronize: true,
     }),
   ],
   controllers: [AppController],
   providers: [SumaService, RestaService, MultiService, DiviService],
+  exports: [TypeOrmModule],
 })
 export class AppModule {}

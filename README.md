@@ -24,7 +24,9 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) Aplicacion de prueba enfocada a una calculadora para la empresa RMS Thomas Seguridad.
+
+-- Deloper: Nicolas perdomo
 
 ## Installation
 
@@ -40,34 +42,45 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## Funcion
 
-```bash
-# unit tests
-$ npm run test
+La api esta diseñada para exponer 4 servicios donde se encontraran cada una de las operaciones matematicas solicitadas, para testearlo se adjuntan los CURL para copiar en postman y testearlos.
 
-# e2e tests
-$ npm run test:e2e
+``` bash
+# /sum
+curl --location 'http://localhost:8081/sum' \
+--header 'Content-Type: application/json' \
+--data '{
+    "number1": 1,
+    "number2": 2,
+    "operacion": "+"
+}'
 
-# test coverage
-$ npm run test:cov
-```
+# /rest
+curl --location 'http://localhost:8081/rest' \
+--header 'Content-Type: application/json' \
+--data '{
+    "number1": 1,
+    "number2": 2,
+    "operacion": "-"
+}'
 
-## Support
+# /multi
+curl --location 'http://localhost:8081/rest' \
+--header 'Content-Type: application/json' \
+--data '{
+    "number1": 1,
+    "number2": 2,
+    "operacion": "*"
+}'
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+# /divi
+curl --location 'http://localhost:8081/rest' \
+--header 'Content-Type: application/json' \
+--data '{
+    "number1": 1,
+    "number2": 2,
+    "operacion": "/"
+}'

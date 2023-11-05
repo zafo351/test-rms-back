@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('calculus')
-export class Calculus {
+@Entity()
+export class postgresdata {
   @PrimaryGeneratedColumn()
   number1: number;
 
