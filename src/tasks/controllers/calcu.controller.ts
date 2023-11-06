@@ -54,8 +54,8 @@ export class CalcuController {
   }
 
   @Put('/update/one/id')
-  update(@Param('id') id: number, @Body() body: any) {
-    return this.updateService.update(id, body);
+  update(@Param('id') id: number, @Body() requestDTO:RequestDTO) {
+    return this.updateService.update(id, requestDTO);
   }
 
   @Delete('/delete/one/id')
